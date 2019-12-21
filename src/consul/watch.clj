@@ -38,7 +38,7 @@
          (assoc :error new-config))
      (assoc old-state :config new-config :failures 0))))
 
-(defn exp-wait [n max-ms]
+(defn exp-wait [^long n, ^long max-ms]
   {:pre [(number? n) (>= n 0) (number? max-ms) (> max-ms 0)]}
   (min (* (Math/pow 2 n) 100) max-ms))
 
