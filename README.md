@@ -2,56 +2,10 @@
 
 [Consul](https://www.consul.io) is an awesome service discovery and configuration provider.
 
+## Installation 
 
-## Changelog
-
-### 0.7.2
-
-> This is a **minor update**
-
-```clojure
-[consul-clojure "0.7.1"]
-```
-
-* [wkoelewijn] Fixes issue with TTL check
-
-### 0.7.1
-
-> This is a **minor update**
-
-```clojure
-[consul-clojure "0.7.1"]
-```
-* [pimeys] Fixed issue where bytes were serialized using the platform encoding instead of UTF-8
-
-### 0.7.0
-
-> Consul 0.7 Features
-
-* Consul 0.7 KV transactions courtesy of @pimeys
-
-### 0.6.0
-
- > This is a **major update** that **may be BREAKING**.
-
-```clojure
-[consul-clojure "0.6.0"]
-```
-
-* Pulled in the following changes from a fork
-* **BREAK**: Dropped use of metadata for tracking various values
-* **BREAK**: No more keyword args in favor of maps
-* **BREAK**: Dropped the dependency on com.stuartsierra.component and components in favor of fns
-* **FIX**: NPE on first :failures increment
-* Add leader watch
-
-
-### 0.1.0
-
-> Initial release
-
-```clojure
-[consul-clojure "0.1.0"] ;; initial
+```clj
+[com.nedap.staffing-solutions/consul-clojure "0.7.3"]
 ```
 
 ## Goals
@@ -60,7 +14,7 @@ Provide a useful library for building Consul aware Clojure applications.
 
 ## Getting Started
 
-First, you'll need to setup a local consul agent.  See [setup instructions](https://www.consul.io/intro/getting-started/install.html).  It's much easier to see what's happening by using the consul-web-ui.
+First, you'll need to setup a local consul agent. See [setup instructions](https://www.consul.io/intro/getting-started/install.html).  It's much easier to see what's happening by using the consul-web-ui.
 
 This is the LaunchAgent configuration I use for OSX after installing `consul` and `consul-web-ui`.
 
@@ -304,6 +258,6 @@ Force leave a node.
 ## License
 
 Copyright © 2015 Benjamin Poweski
+Copyright © 2018- Nedap
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+This program and the accompanying materials are made available under the terms of the [Eclipse Public License 2.0](https://www.eclipse.org/legal/epl-2.0)
