@@ -654,6 +654,5 @@
    (explain-prepared-query conn query-id {}))
   ([conn query-id params]
    (-> (consul conn :get [:query (.toString query-id) :explain] {:query-params params})
-       :body
-       :Query)))
+       :body)))
 

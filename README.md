@@ -11,7 +11,7 @@
 
 ### 0.7.4
 
-Fixed `catalog-services` query to return a hashmap with service names as keys .
+Fixed `catalog-services` query to return a hashmap with service names as keys. Previously the service names were kebab-cased and sometimes that would lead to service names that would not exist.
 Added test for the `catalog-services` operation.
 Fixed the prepared queries parameters handling.
 Updated dependencies.
