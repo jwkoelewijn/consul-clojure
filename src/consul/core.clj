@@ -435,8 +435,7 @@
   ([conn]
    (catalog-datacenters conn {}))
   ([conn {:as params}]
-   (-> (consul-index conn :get [:catalog :datacenters] {:query-params params})
-       :body)))
+   (consul-index conn :get [:catalog :datacenters] {:query-params params})))
 
 (defn catalog-nodes
   ([conn]
