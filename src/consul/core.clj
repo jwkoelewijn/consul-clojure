@@ -407,14 +407,12 @@
   ([conn service-id {:as params}]
    (consul-200 conn :put [:agent :service :deregister service-id] {:query-params params})))
 
-
 (defn agent-maintenance-service
   "Put a service into maintenance"
   ([conn service-id enable reason]
    (agent-maintenance-service conn service-id {:enable enable :reason reason}))
   ([conn service-id {:keys [enable reason] :as params}]
    (consul-200 conn :get [:agent :service :maintenance service-id] {:query-params params})))
-
 
 ;; Catalog endpoints - https://www.consul.io/docs/agent/http/catalog.html
 
@@ -448,8 +446,8 @@
 (defn catalog-services
   ([conn]
    (catalog-services conn {}))
-  ([conn {:keys [dc] :as params}]
-   (:body (consul-index conn :get [:catalog :services] {:query-params params}))))
+  ([conn {:as params}]
+   (shallow-nameify-keys (:body (consul conn :get [:catalog :services] {:query-params params})))))
 
 (defn catalog-service
   ([conn service]
@@ -642,18 +640,18 @@
    (consul-200 conn :delete [:query (.toString query-id)] params)))
 
 (defn execute-prepared-query
-  "Execute a prepared query by either its ID (a UUID) or
-   its name"
+  "Execute a prepared query by either its ID (a UUID) or its name"
   ([conn query-id]
    (execute-prepared-query conn  query-id {}))
   ([conn query-id params]
-   (->> (consul conn :get [:query (.toString query-id) :execute] :query-params params)
-        :body
-        (cske/transform-keys csk/->kebab-case-keyword))))
+   (-> (consul-index conn :get [:query (.toString query-id) :execute] {:query-params params})
+       :body)))
 
 (defn explain-prepared-query
   "This generates a fully-rendered query for a given, post interpolation"
   ([conn query-id]
    (explain-prepared-query conn query-id {}))
   ([conn query-id params]
-   (:body (consul conn :get [:query (.toString query-id) :explain] :query-params params))))
+   (-> (consul conn :get [:query (.toString query-id) :explain] {:query-params params})
+       :body)))
+

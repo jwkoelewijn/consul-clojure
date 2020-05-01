@@ -2,8 +2,25 @@
 
 [Consul](https://www.consul.io) is an awesome service discovery and configuration provider.
 
+```clojure
+[consul-clojure "0.7.4"]
+```
+
 
 ## Changelog
+
+### 0.7.4
+
+> This is a **minor update** that **is BREAKING** for the `catalog-services` function.
+
+Fixed `catalog-services` query to return a hashmap with service names as keys. Previously the service names were kebab-cased and sometimes that would lead to service names that would not exist.
+Added test for the `catalog-services` operation.
+Fixed the prepared queries parameters handling.
+Updated dependencies.
+
+### 0.7.3
+
+Prepared queries support.
 
 ### 0.7.2
 
@@ -13,7 +30,7 @@
 [consul-clojure "0.7.1"]
 ```
 
-* [wkoelewijn] Fixes issue with TTL check
+* [jwkoelewijn] Fixes issue with TTL check
 
 ### 0.7.1
 
