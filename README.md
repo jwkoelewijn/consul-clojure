@@ -2,8 +2,23 @@
 
 [Consul](https://www.consul.io) is an awesome service discovery and configuration provider.
 
+```clojure
+[consul-clojure "0.7.4"]
+```
+
 
 ## Changelog
+
+### 0.7.4
+
+Fixed `catalog-services` query to provide a hashmap wher the keys are the service name.
+Added test for the `catalog-services` operation.
+Fixed the prepared queries parameters handling.
+Updated dependencies.
+
+### 0.7.3
+
+Prepared queries support.
 
 ### 0.7.2
 

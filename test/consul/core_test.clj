@@ -93,6 +93,18 @@
       (is (map? (get-in (agent-services :local) [service-id])))
       (is (= 2 (count (filter (comp #{service-id} :service-id) (vals (agent-checks :local)))))))))
 
+(deftest ^{:integration true} catalog-test
+  (testing "registering and deregistering a service using the agent but checking the catalog"
+    (let [service-id   (str "consul-clojure.service." (UUID/randomUUID))
+          service-name "service-test-name-api-v1-production"]
+      (is (nil?  (get (catalog-services :local) service-name)))
+      (is (true? (agent-register-service :local {:id   service-id
+                                                 :name service-name})))
+      (is (true? (contains? (catalog-services :local)
+                            service-name)))
+      (is (true? (agent-deregister-service :local service-id)))
+      (is (nil?  (get (catalog-services :local) service-name))))))
+
 (deftest ^{:integration true} prepared-query-test
   (testing "registering and removing prepared queries"
     (let [pq-name (str "consul-clojure.prepared-query." (UUID/randomUUID))]
